@@ -19,6 +19,7 @@ class User:
     dataBaseName = "methods.db"
     tableName = "users"
     loggedIn = False
+    #use query to get and store userID after logged in
     userID = ""
 
     def __init__ (self, dataBaseName = "", tableName = ""):
@@ -32,11 +33,15 @@ class User:
     def logout(self):
         self.loggedIn = False
     def viewAccountInformation(self):
-        print('First name: ', self.first)
-        print('Last name: ',self.last)
-        print('Phone number',self.number)
-        print('Email Adress: ', self.email)
-        print('Full Address: ', self.address, self.city, self.state, self.zip)
+        queryString = "SELECT * FROM users WHERE userID='" + self.userID + "'"
+        cursor.execute(queryString)
+        result = cursor.fetchall()
+        for x in result:
+            print("Name: ", x[1], " ", x[0])
+            print("Number: ", x[2])
+            print("email: ", x[3])
+            print("Address: ", x[4], " ", x[5], ", ", x[6], " ", x[7])
+            print("userID: ", x[9])
     def createAccount(self):
         self.firstName = str(input('What is your first name? '))
         self.lastName = input('What is your last name? ')
