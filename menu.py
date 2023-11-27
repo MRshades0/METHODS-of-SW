@@ -53,9 +53,11 @@ def main():
                 print("Inventory Menu:\n1. Go Back\n2. View Inventory\n3. Search Inventory")
                 inventorySelect = input("Select option from inventory menu: ")
                 if(inventorySelect == 2):
-                    #view inventory
+                    Inventory.viewInventory()
                 elif(inventorySelect == 3):
-                    #search inventory
+                    Inventory.searchInventory()
+                elif(inventorySelect == 4):
+                    Inventory.decreaseStock()
                 elif(inventorySelect != 1):
                     print("Invalid selection")
         elif(select == 4):
