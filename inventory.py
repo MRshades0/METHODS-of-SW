@@ -1,12 +1,3 @@
-# Inventory
-# -databaseName: string
-# -tableName: string
-# +Inventory()
-# +Inventory(string databaseName, string tableName)
-# +viewInventory(): void
-# +searchInventory(): void
-# +decreaseStock(string ISBN): void
-
 import sqlite3
 
 class Inventory:
@@ -23,7 +14,7 @@ class Inventory:
 		for row in result:
 			print(row)
 
-	def searchInventory(self,):
+	def searchInventory(self):
 		self.__cursor.execute(f"SELECT * FROM {self.tName} WHERE Title LIKE ?",('%'+ title + '%',})
 		result = self.__cursor.fetchall()
 
@@ -34,8 +25,8 @@ class Inventory:
 
 	def decreaseStock(self, ISBN, quantity):
 		self.__cursor.execute(f"UPDATE {self.tName} SET Stock = Stock - ? WHERE ISBN = ?", (quantity, ISBN))
-		if __name__ = "__main__":
-		ManageInventory = Inventory("inventorydb.db","Inventory")
+		if __name__ == "__main__":
+			manageInventory = Inventory("inventorydb.db","Inventory")
 		while True:
 			print("1. View")
 			print("2. Search")
@@ -45,7 +36,7 @@ class Inventory:
 			option = int(input("Enter Menu Option: "))
 
 			if option == 1:
-				ManageInventory.viewInventory()
+				manageInventory.viewInventory()
 			elif option == 2:
 				search = input("Enter Search: ")
 				manageInventory.searchInventory(search)
