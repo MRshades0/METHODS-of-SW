@@ -40,11 +40,11 @@ class Inventory:
 			elif option == 2:
 				search = input("Enter Search: ")
 				manageInventory.searchInventory(search)
-			elif choice == 3:
+			elif option == 3:
 				ISBN = Input("Enter ISBN: ")
 				quantity = int(input("Enter amount to decrease: "))
 				manageInventory.decreaseStock(ISBN, quantity)
-			elif choice == 0:
+			elif option == 0:
 				exit()
 			else:
 				print("Invalid. Enter a number between 0-3.")
