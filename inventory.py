@@ -1,7 +1,7 @@
 import sqlite3
 
 class Inventory:
-	def __init__(self, dbName, tName, connection)
+	def __init__(self, dbName, tName, connection):
 		self.__dbName = dbName
 		self.__tblName = tName
 		self.__connection = connection
