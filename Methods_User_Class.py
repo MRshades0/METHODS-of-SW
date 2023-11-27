@@ -21,10 +21,10 @@ class User:
         userID = (input("Please enter userID: "))
         self.userID = userID
         password = input("Please enter password: ")
-        queryString = "SELECT P\password FROM USER WHERE userID='" + userID + "'"
+        queryString = "SELECT password FROM USER WHERE userID='" + userID + "'"
         self.__cursor.execute(queryString)
         self.loggedIn = False
-        result = self.cursor.fetchall()
+        result = self.__cursor.fetchall()
         if (result == []):
             print("Login invalid\n")
             return False
