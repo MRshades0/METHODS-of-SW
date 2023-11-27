@@ -18,6 +18,7 @@ except:
 cursor = connection.cursor()
 dataBaseName = "methods.db"
 user = User()
+cart = Cart()
 passed = False
 while(passed == False):
     print("1. Login")
@@ -26,8 +27,10 @@ while(passed == False):
     print("\n")
     select = input("Please select option from menu: ")
     if (select == 1):
-        user.login()
-        passed = True
+        if(user.login() == False):
+            print("Invalid Login")
+        else:
+            passed = True
     elif(select == 2):
         user.createAccount()
         passed = True
@@ -49,13 +52,24 @@ while(loggedIn == True):
             print("Inventory Menu:\n1. Go Back\n2. View Inventory\n3. Search Inventory")
             inventorySelect = input("Select option from inventory menu: ")
             if(inventorySelect == 2):
-
                 #view inventory
             elif(inventorySelect == 3):
                 #search inventory
+            elif(inventorySelect != 1)
+                print("Invalid selection")
     elif(select == 4):
         cartSelect = 0
         while(cartSelect != 1):
             print("Cart Menu:\n1. Go Back\n2. View Cart\n3. Add Items to Cart\n4. Remove an Item from Cart\n5. Check Out")
             cartSelect = input("Select option from cart menu: ")
-    
+            if (cartSelect == 2):
+                userID = user.getUserID()
+                cart.viewCart(userID, #inventoryTable)
+            elif(cartSelect == 3)
+                #Add items to cart
+            elif(cartSelect == 4)
+                #Remove items from cart
+            elif(cartSelect == 5)
+                #checkout
+            elif(cartSelect != 1)
+                print("Invalid selection")

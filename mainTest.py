@@ -19,13 +19,11 @@ dataBaseName = "methods.db"
 tableName = "users"
 test = User(dataBaseName, tableName, connection)
 #test.createAccount()
-test.login()
-if(test.getLoggedIn == True):
-    print("Login works")
-#test.viewAccountInformation()
+while(test.login() != True):
+    test.login()
+test.getLoggedIn != True
+test.viewAccountInformation()
 test.logout()
 loggedIn = test.getLoggedIn()
 if (loggedIn == False):
     print("Logout Successful")
-
-
