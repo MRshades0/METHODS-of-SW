@@ -14,8 +14,8 @@ class Inventory:
 		for row in result:
 			print(row)
 
-	def searchInventory(self):
-		self.__cursor.execute(f"SELECT * FROM {self.tName} WHERE Title LIKE ?",('%'+ title + '%',})
+	def searchInventory(self,):
+		self.__cursor.execute;{f"SELECT * FROM {self.tName} WHERE Title LIKE ?",('%'+ title + '%',)}
 		result = self.__cursor.fetchall()
 
 		if result:
@@ -24,4 +24,4 @@ class Inventory:
 		else: print(f"Nothing Found")
 
 	def decreaseStock(self, ISBN, quantity):
-		self.__cursor.execute(f"UPDATE {self.tName} SET Stock = Stock - ? WHERE ISBN = ?", (quantity, ISBN))
+		self.__cursor.execute(f"UPDATE {self.tName} SET Stock = '{quantity}'")
