@@ -25,26 +25,3 @@ class Inventory:
 
 	def decreaseStock(self, ISBN, quantity):
 		self.__cursor.execute(f"UPDATE {self.tName} SET Stock = Stock - ? WHERE ISBN = ?", (quantity, ISBN))
-		if __name__ == "__main__":
-			manageInventory = Inventory("inventorydb.db","Inventory")
-		while True:
-			print("1. View")
-			print("2. Search")
-			print("3. Decrease")
-			print("0. Exit")
-
-			option = int(input("Enter Menu Option: "))
-
-			if option == 1:
-				manageInventory.viewInventory()
-			elif option == 2:
-				search = input("Enter Search: ")
-				manageInventory.searchInventory(search)
-			elif option == 3:
-				ISBN = Input("Enter ISBN: ")
-				quantity = int(input("Enter amount to decrease: "))
-				manageInventory.decreaseStock(ISBN, quantity)
-			elif option == 0:
-				exit()
-			else:
-				print("Invalid. Enter a number between 0-3.")
