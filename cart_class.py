@@ -11,7 +11,7 @@
 
 
 import sqlite3
-## import "inventory.py"
+from  inventory import Inventory
 
 def displaySelect(result):
     for tup in result:
@@ -63,8 +63,8 @@ class Cart:
             if int(tup[0]) == int(ISBN):
                 isThere = True
         ## if the book is already in the cart
-        if isThere:
-            quantity = int(tup[2]) - 1
+        quantity = int(tup[2]) - 1
+        if isThere and quantity != 0:
             # delete entry and replace with quantity - 1
             self.__cursor.execute(f"DELETE FROM {self.__tblName} WHERE userID={userID} AND ISBN={ISBN}")
             self.__cursor.execute(f"Insert INTO {self.__tblName} (ISBN, userID, quantity) VALUES ({ISBN},{userID},{quantity})")
@@ -77,20 +77,18 @@ class Cart:
         ## print success
         print('successfully deleted')
         
-    def checkout(self, userID):
-        pass
-        # self.__cursor.execute(f"SELECT ISBN FROM {self.__tblName} WHERE userID={userID}")
-        # decrementList = self.__cursor.fetchall()
-        # for book in decrementList:
-            # THIS WILL BE THE DECREASE STOCK FUNCTION FROM INVENTORY
-            
-            
-        # self.__cursor.execute(f"DELETE FROM {self.__tblName} WHERE userID={userID}")
+    def checkout(self, userID, inventory):
+        self.__cursor.execute(f"SELECT ISBN, quantity FROM {self.__tblName} WHERE userID={userID}")
+        decrementList = self.__cursor.fetchall()
+        for book in decrementList:
+            inventory.decreaseStock(book[0], book[1])
+                
+        self.__cursor.execute(f"DELETE FROM {self.__tblName} WHERE userID={userID}")
         
-        ## commit query
-        # self.__connection.commit()
-        ## print success
-        # print('successful checkout')
+        # commit query
+        self.__connection.commit()
+        # print success
+        print('successful checkout')
         
         
 

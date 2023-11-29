@@ -8,20 +8,23 @@ class Inventory:
 		self.__cursor = self.__connection.cursor()
 
 	def viewInventory(self):
-		self.__cursor.execute(f'SELECT * FROM {self.tName}')
+		self.__cursor.execute(f'SELECT * FROM {self.__tblName}')
 		result = self.__cursor.fetchall()
 
 		for row in result:
 			print(row)
 
-	def searchInventory(self,):
-		self.__cursor.execute;{f"SELECT * FROM {self.tName} WHERE Title LIKE ?",('%'+ title + '%',)}
+	def searchInventory(self):
+		title = input('Enter book title: ')
+		self.__cursor.execute(f"SELECT * FROM {self.__tblName} WHERE title LIKE '%{title}%'")
 		result = self.__cursor.fetchall()
-
-		if result:
-			for row in result:
-				print(row)
-		else: print(f"Nothing Found")
+		print()
+		for row in result:
+			print(row)
+		print()
 
 	def decreaseStock(self, ISBN, quantity):
-		self.__cursor.execute(f"UPDATE {self.tName} SET Stock = '{quantity}'")
+		self.__cursor.execute(f"SELECT stock FROM {self.__tblName} WHERE ISBN='{ISBN}'")
+		result = self.__cursor.fetchall()
+		newQuantity = int(result[0][0]) - (int(quantity))
+		self.__cursor.execute(f"UPDATE {self.__tblName} SET stock = '{newQuantity}'")
