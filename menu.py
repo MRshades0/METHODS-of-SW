@@ -39,7 +39,7 @@ def main():
                 print("Invalid Login")
             else:
                 passed = True
-            passed = True
+            
         elif(select == '3'):
             user.logout()
             passed = True

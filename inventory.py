@@ -27,4 +27,4 @@ class Inventory:
 		self.__cursor.execute(f"SELECT stock FROM {self.__tblName} WHERE ISBN='{ISBN}'")
 		result = self.__cursor.fetchall()
 		newQuantity = int(result[0][0]) - (int(quantity))
-		self.__cursor.execute(f"UPDATE {self.__tblName} SET stock = '{newQuantity}'")
+		self.__cursor.execute(f"UPDATE {self.__tblName} SET stock = '{newQuantity}' WHERE ISBN='{ISBN}'")
